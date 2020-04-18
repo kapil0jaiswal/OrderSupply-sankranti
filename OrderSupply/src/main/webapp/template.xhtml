@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+<title>Sankranti Restaurants</title>
+<style>
+* { 
+padding:0;
+margin:0;
+}
+
+</style>
+<f:metadata>
+<f:event listener="#{loginController.verifyLogin}" type="preRenderView"></f:event>
+</f:metadata>
+</h:head>
+<h:body>
+
+
+	<div id="page">
+   <!-- <div id="menu">
+	  	<ui:insert name="menu" >
+	 	  <ui:include src="menu.xhtml" />
+	   	</ui:insert>
+	    </div>  -->
+	    
+	    
+		<div id="header">
+			<ui:insert name="header">
+				<ui:include src="header.xhtml" />
+			</ui:insert>
+		</div>
+<br/>
+<br/>
+		<div class="center">
+			<div id="content">
+			
+				<ui:insert name="content">
+					<ui:include src="content.xhtml" />
+				</ui:insert>
+			</div>
+		</div>
+		<div id="footer">
+			<ui:insert name="footer">
+				<ui:include src="footer.xhtml" />
+			</ui:insert>
+		</div>
+
+	</div>
+
+</h:body>
+
+</html>

@@ -1,0 +1,143 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="app-template.xhtml">
+
+	<ui:define name="content">
+	<style>
+	#form{
+margin-top:3%;
+	}
+
+	</style>
+	<h:form id="form"  >
+	
+		<p:growl id="msgs" showDetail="true" />
+	<p:panelGrid  columns="3" layout="grid"  columnClasses="ui-lg-4 ui-md-2,ui-lg-4 ui-md-8,ui-lg-4 ui-md-2">
+	<p:spacer  />
+
+					<p:panelGrid columns="2" layout="grid"  columnClasses="ui-lg-4,ui-lg-6">
+					<i><h:outputLabel value="Add Products" style="color:white;padding:.4em 1em .4em ;font-size:20px;font-weight: bold;background:lightblue;" />
+						</i><p:spacer></p:spacer>
+					<h:outputLabel value="Product Name" />
+					<p:inputText value="#{orderController.pname}" />
+					<h:outputLabel value="Product Desc" />  
+					<p:inputText value="#{orderController.description}" />
+					<h:outputLabel value="Price " />
+					<p:inputText value="#{orderController.price}" />
+					<h:outputLabel value="Quantity" />
+					<p:inputText value="#{orderController.qty}" />
+					<p:spacer></p:spacer>
+					<p:commandButton value="ADD" style="margin-left:10px;"
+						action="#{orderController.addAction}" update=":form" />
+						</p:panelGrid>
+		
+			<p:spacer />
+			</p:panelGrid>
+		<p:panelGrid columns="3" layout="grid"
+			columnClasses="ui-lg-1 ui-md-12 ui-g-12,ui-lg-10 ui-md-12 ui-g-12,ui-lg-1 ui-md-12 ui-g-12">
+				<p:spacer />
+						
+
+				<p:panel header="Order List" id="panel" >
+
+					<p:dataTable id="table" var="p" value="#{orderController.prod}"
+						widgetVar="Table1" filteredValue="#{orderController.filterProd}"
+						editable="true" style="margin-bottom:20px;background: lightblue!important;"
+						emptyMessage="No products found with given criteria">
+
+						<f:facet name="header">
+							<p:outputPanel>
+								<h:outputText value="Search :" />
+								<p:inputText id="globalFilter" onkeyup="PF('Table1').filter()"
+									style="width:50%;"
+									placeholder="Enter keyword" />
+
+							</p:outputPanel>
+						</f:facet>
+
+						<p:ajax event="rowEdit" listener="#{orderController.onRowEdit}"
+							update=":form:msgs" />
+						<p:ajax event="rowEditCancel"
+							listener="#{orderController.onRowCancel}" update=":form:msgs" />
+
+						<p:column filterBy="#{p.pid}" headerText="Id"
+							filterMatchMode="contains">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{p.pid}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="modelInput" value="#{p.pid}"
+										style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column filterBy="#{p.pname}" headerText="Product Name"
+							filterMatchMode="contains">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{p.pname}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{p.pname}" style="width:100%"
+										label="Prioduct Name" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column filterBy="#{p.description}" headerText="Product Desc"
+							filterMatchMode="contains">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{p.description}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{p.description}" style="width:100%"
+										label="Prioduct Desc" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column filterBy="#{p.price}" headerText="Price"
+							filterMatchMode="contains">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{p.price}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{p.price}" style="width:100%"
+										label="Price" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column filterBy="#{p.qty}" headerText="Quantity"
+							filterMatchMode="contains">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{p.qty}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{p.qty}" style="width:100%"
+										label="Quantity" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column style="width:35px">
+							<p:rowEditor />
+						</p:column>
+
+						<p:column headerText="Delete">
+							<p:commandButton value="Delete"
+								action="#{orderController.delete(p)}" update="table" />
+
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+
+		</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

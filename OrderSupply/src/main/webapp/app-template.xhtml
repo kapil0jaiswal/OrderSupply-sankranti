@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+	<h:head>
+		
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</h:head>
+	<!-- menu bar added -->
+	<div id="nav">
+		<ui:define name="menu">
+			<style>
+* {
+	padding: 0;
+	margin: 0;
+}
+
+</style>
+
+		</ui:define>
+
+	</div>
+
+	<ui:define name="header">
+		<style>
+* {
+	padding: 0;
+	margin: 0;
+}
+#header {
+	background: lightblue;
+	height: 10%;
+	width: 100%;
+	border-radius: 25px;
+	position: fixed;
+}
+.btn{
+margin-left:2%;
+margin-top:1%;
+background: lightblue;
+float:left;
+}
+    #header h1{
+    color: white;
+   margin-top:10px;
+    margin-left:30%;
+    }
+    .ui-dialog-mask {
+    width: 76%;
+    margin-left: 26%;
+    
+    }
+</style>
+		
+			<h:form><div id="header" >
+				<p:commandButton icon=" fa fa-bars"
+					oncomplete="PF('sidebar1').show()" styleClass="btn" />
+				<p:sidebar widgetVar="sidebar1" style="clear:both;" baseZIndex="10000">
+					 <h:outputText style="color:white;padding:.4em 1em .4em ;font-size:20px;font-weight: bold;background:lightblue;" value="Welcome, #{loginController.userAccount.uname}" />
+					
+					<p:commandButton
+						style="height:50px;width:50px;border-radius:50%;background-color:red;margin-left:35%;margin-top:20%;"
+						icon="fa fa-power-off" action="#{loginController.logout}" />
+				</p:sidebar>
+				<i><h1>SANKRANTI FOODS</h1></i>
+				</div>
+			</h:form>
+		
+	</ui:define>
+
+
+
+
+</ui:composition>

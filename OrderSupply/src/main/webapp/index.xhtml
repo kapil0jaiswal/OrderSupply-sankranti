@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<style>
+body{
+padding: 0;
+}
+
+</style>
+</h:head>
+<h:body>
+<p:tabView>
+<div id="login">
+<p:tab title="Login">
+	
+			<ui:insert name="login">
+				<ui:include src="login.xhtml" />
+			</ui:insert>
+		
+ </p:tab>
+ </div>
+ <p:tab title="SignUp">
+  <div id="SignUp">
+			<ui:insert name="SignUp">
+				<ui:include src="register.xhtml" />
+			</ui:insert>
+		</div>
+  </p:tab>
+  </p:tabView>
+</h:body>
+
+</html>

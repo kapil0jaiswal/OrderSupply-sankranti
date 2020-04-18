@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<h:body>
+	<p:panelGrid columns="3" layout="grid"
+		columnClasses="ui-sm-1 ui-md-2 ui-lg-4,ui-sm-10 ui-md-8 ui-lg-4,ui-sm-1 ui-md-2 ui-lg-4">
+		<p:spacer />
+
+		<h:panelGroup style="display:block;">
+			<h:form>
+				<p:growl id="growl" showDetail="true" sticky="true" />
+
+				<p:panel header="Login">
+					<p:outputLabel value="Username" for="username" />
+					<p:inputText id="username" value="#{loginController.uname}"
+						styleClass="test" required="true"
+						requiredMessage="Username required" />
+					<p:message for="username"></p:message>
+					<br />
+					<br />
+					<p:outputLabel value="Password" for="password" />
+					<p:password id="password" value="#{loginController.pword}"
+						required="true" requiredMessage="Password required" />
+					<p:message for="password"></p:message>
+					<br />
+					
+					<p:commandButton value="Login" action="#{loginController.loginX}"
+						update="@form" />
+					<!-- 	<a href="register.xhtml">NewUser?|signup</a>
+					/ -->
+					<a href="forgot.xhtml"> ForgotPassword?</a>
+				</p:panel>
+			</h:form>
+
+
+		</h:panelGroup>
+		<p:spacer />
+	</p:panelGrid>
+</h:body>
+
+</html>

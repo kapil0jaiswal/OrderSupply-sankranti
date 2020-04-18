@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Sign Up</title>
+</h:head>
+<h:body>
+		<p:panelGrid columns="3" layout="grid"
+			columnClasses="ui-sm-1 ui-md-2 ui-lg-4,ui-sm-10 ui-md-8 ui-lg-4,ui-sm-1 ui-md-2 ui-lg-4">
+			<p:spacer />
+			<h:panelGroup style="display:block; text-align:center">
+		`	<h1>		<p:outputLabel value="Registration Form" /></h1>
+				<h:form>
+					<!-- REGISTRATION FORM -->
+					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+						<p:outputLabel value="First Name" />
+						<p:inputText value="#{register.firstname}" />
+
+						<p:outputLabel value="Last name" />
+						<p:inputText value="#{register.lastname}" />
+
+						<p:outputLabel value="UserName" />
+						<p:inputText value="#{register.username}" />
+
+						<p:outputLabel value="Email Id" />
+						<p:inputText value="#{register.emailid}" />
+
+						<p:outputLabel value="Password " />
+						<p:password value="#{register.password}" />
+
+						<p:outputLabel value="Confirm Password" />
+						<p:password value="#{register.confirm}" />
+						<p:outputLabel value="Mobile No:" />
+						<p:inputText value="#{register.mobile}" />
+
+
+						<p:outputLabel for="@next" value="Gender" />
+						<p:selectOneMenu id="gender" value="#{register.gender}"
+							style="width:125px">
+							<f:selectItem itemLabel="Select One" itemValue="" />
+							<f:selectItem itemLabel="male" itemValue="male" />
+							<f:selectItem itemLabel="female" itemValue="female" />
+							<f:selectItem itemLabel="other" itemValue="other" />
+							<f:facet name="footer">
+								<p:separator />
+								<h:outputText value="3 consoles" style="font-weight:bold;" />
+							</f:facet>
+						</p:selectOneMenu>
+
+
+						<p:outputLabel value="Address" />
+						<p:inputTextarea value="#{register.address}" />
+						<p:commandButton value="RegisterBro" action="#{register.submit}" update="@form" />
+					</h:panelGrid>
+				</h:form>
+			</h:panelGroup>
+			<p:spacer />
+		</p:panelGrid>
+	</h:body>
+
+</html>

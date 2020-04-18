@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="app-template.xhtml">
+	<ui:define name="content">
+		<h:form id="form">
+			<p:dataTable var="i" value="#{orderListController.item}">
+				<p:column headerText="Id">
+					<h:outputText value="#{i.p.pid}" />
+				</p:column>
+				
+				<p:column headerText="Name">
+					<h:outputText value="#{i.p.pname}" />
+				</p:column>
+				
+				<p:column headerText="Description">
+					<h:outputText value="#{i.p.description}" />
+				</p:column>
+
+				<p:column headerText="Price">
+					<h:outputText value="#{i.p.price}" />
+				</p:column>
+				
+				<p:column headerText="Quantity">
+					<p:spinner id="spinner1" value="#{i.iqty}" min="0"
+						max="10">
+						<p:ajax process="@this" update="form" />
+					</p:spinner>
+					<p:slider for="spinner1" minValue="0" maxValue="10" />
+				</p:column>
+				
+				<p:column headerText="Add Item">
+					<p:commandButton icon="fa fa-plus"/>
+				</p:column>
+				
+				<p:column headerText="sub Total">
+					<h:outputText value="#{i.p.price * i.iqty}" />
+				</p:column>
+				
+			</p:dataTable>
+			
+			<p:commandButton value="Procced To cart" />
+			<p:commandButton value="Clear" />
+			</h:form>
+	</ui:define>
+</ui:composition>
